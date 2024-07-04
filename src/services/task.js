@@ -360,6 +360,58 @@ const handleDragOver = function (e) {
   e.preventDefault();
 };
 
+// Функция для обновления выпадающего списка задач
+const updateDropDownLists = () => {
+  const backlogTasks = document.querySelector(".kanban-backlog").children;
+  const readyTasks = document.querySelector(".kanban-ready").children;
+  const progressTasks = document.querySelector(".kanban-progress").children;
+
+  const backlogDropDown = document.querySelector(".backlog");
+  const readyDropDown = document.querySelector(".ready");
+  const progressDropDown = document.querySelector(".inprogress");
+
+  // Очистка текущих элементов списка
+  backlogDropDown.innerHTML = "";
+  readyDropDown.innerHTML = "";
+  progressDropDown.innerHTML = "";
+
+  // Добавление задач в выпадающий список
+  Array.from(backlogTasks).forEach(task => {
+    if (task.id) {
+      const taskFrom = document.createElement("div");
+      taskFrom.classList.add("kanban-element");
+      taskFrom.id = `task_${task.id}`;
+      taskFrom.innerHTML = task.textContent;
+      taskFrom.setAttribute("draggable", "true");
+      backlogDropDown.append(taskFrom);
+    }
+  });
+
+  Array.from(readyTasks).forEach(task => {
+    if (task.id) {
+      const taskFrom = document.createElement("div");
+      taskFrom.classList.add("kanban-element");
+      taskFrom.id = `task_${task.id}`;
+      taskFrom.innerHTML = task.textContent;
+      taskFrom.setAttribute("draggable", "true");
+      readyDropDown.append(taskFrom);
+    }
+  });
+
+  Array.from(progressTasks).forEach(task => {
+    if (task.id) {
+      const taskFrom = document.createElement("div");
+      taskFrom.classList.add("kanban-element");
+      taskFrom.id = `task_${task.id}`;
+      taskFrom.innerHTML = task.textContent;
+      taskFrom.setAttribute("draggable", "true");
+      progressDropDown.append(taskFrom);
+    }
+  });
+
+  Show(); // Обновление всех необходимых данных и событий
+};
+
 const handleDrop = function (e) {
   e.preventDefault();
   const taskId = e.dataTransfer.getData("text/plain");
@@ -394,6 +446,9 @@ const handleDrop = function (e) {
 
     // После обновления состояния, обновим счетчики задач
     countTasks();
+
+    // Обновляем выпадающие списки задач
+    updateDropDownLists();
   }
 };
 
