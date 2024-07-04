@@ -39,11 +39,6 @@ export const addFirstTask = function (document) {
         newTask.classList.remove("is-dragging");
       });
 
-      // Добавляем обработчик для выделения задачи при клике
-      newTask.addEventListener("click", () => {
-        newTask.classList.toggle("selected");
-      });
-
       bodyBacklog.append(newTask);
 
       inputTask.value = "";
@@ -55,23 +50,6 @@ export const addFirstTask = function (document) {
     }
   });
 };
-
-// Обработчик нажатия клавиши DELETE для удаления выделенных задач
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Delete") {
-    const selectedTasks = document.querySelectorAll(".kanban-element.selected");
-    let tasks = getFromStorage("tasks") || [];
-    selectedTasks.forEach(taskElement => {
-      const taskId = taskElement.id.replace("task_", "");
-      // Удаляем задачу из DOM
-      taskElement.remove();
-      // Удаляем задачу из локального хранилища
-      tasks = tasks.filter(task => task.id !== taskId);
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    countTasks();
-  }
-});
 
 // Логика показа задач пользователя
 export const showUserTasks = function () {
@@ -92,11 +70,6 @@ export const showUserTasks = function () {
       taskElement.setAttribute("draggable", "true");
       taskElement.state = task.state;
       taskElement.id = `task_${task.id}`;
-
-      // Добавляем обработчик для выделения задачи при клике
-      taskElement.addEventListener("click", () => {
-        taskElement.classList.toggle("selected");
-      });
 
       taskElement.addEventListener("dragstart", () => {
         taskElement.classList.add("is-dragging");
@@ -150,11 +123,6 @@ export const showAdminTasks = function () {
     taskElement.state = task.state;
     console.log(taskElement.state);
     taskElement.id = `task_${task.id}`;
-
-    // Добавляем обработчик для выделения задачи при клике
-    taskElement.addEventListener("click", () => {
-      taskElement.classList.toggle("selected");
-    });
 
     // Добавляем обработчики событий для перетаскивания
     taskElement.addEventListener("dragstart", () => {

@@ -53,7 +53,7 @@ export const addUser = function () {
     // Добавляем каждого пользователя в список
     uniqueUsers.forEach((user) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `Login: ${user.login} Password: ${user.password}`;
+      listItem.textContent = `Login: ${user.login} | Password: ${user.password}`;
 
       // Создаем кнопку "Remove User" для удаления пользователя
       const removeButton = document.createElement("button");
@@ -87,17 +87,6 @@ export const addUser = function () {
 
     // Обновляем список пользователей на странице
     updateUsersList(users);
-
-    // Получаем все задачи из локального хранилища
-    let tasks = getFromStorage("tasks") || [];
-    // Фильтруем задачи, исключая те, которые принадлежат удаляемому пользователю
-    tasks = tasks.filter(task => task.login !== login);
-    // Обновляем список задач в локальном хранилище
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-
-    // Обновляем интерфейс задач, чтобы отразить изменения
-    showUserTasks();
-    showAdminTasks();
   };
 
   updateUsersList(getFromStorage("users") || []);
