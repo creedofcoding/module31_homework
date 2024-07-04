@@ -1,0 +1,23 @@
+#app-login-btn {
+  width: 160px;
+}
+
+.container{
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#content {
+  margin: 0;
+  max-height: 100vh;
+}
+
+.modal-content{
+  top: 2em;
+}
+
+.index_navbar {
+  background-color: #0067A3 !important;
+}

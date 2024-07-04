@@ -1,0 +1,119 @@
+<nav class="user_navbar navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Awesome Kanban Board</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+            </ul>
+
+            <div class="user-menu">
+                <span class="name-user"></span>
+                <img src="../img/user-avatar.svg" class="img-user" alt="Фото пользователя">
+                <nav class="dropdown-user-menu">
+                    <button class="button-menu"><img src="../img/arrow-down.svg" alt="Стрелка меню"></button>
+                    <ul class="menu">
+                        <li class="list-menu"><a href="#" class="link">Profile</a></li>
+                        <li class="list-menu"><a href="#" class="link">Tasks</a></li>
+                        <li class="list-menu list-menu-logout"><a href="#" class="link link-logout">Log out</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="user-management-form">
+    <h3>User Management</h3>
+    <form id="userForm">
+        <label for="username">Login:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="username">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button class="addUser" type="submit">+ Add User</button>
+    </form>
+    <ul id="userList">
+        <!-- Список пользователей, который будет обновляться -->
+    </ul>
+</div>
+
+<main class="kanban">
+    <div class="kanban column">
+        <div class="kanban-header">
+            Backlog
+        </div>
+        <div class="kanban-body kanban-backlog">
+
+        </div>
+        <div class="kanban-footer">
+            <input type="text" class="input" placeholder="Введите задачу">
+            <button class="btn btn-add btn-outline-dark btn-backlog" type="button">+ Add card</button>
+            <button class="btn btn-submit btn-outline-dark btn-backlog" type="submit">Submit</button>
+
+        </div>
+    </div>
+    <div class="kanban column">
+        <div class="kanban-header">
+            Ready
+        </div>
+        <div class="kanban-body kanban-ready">
+
+        </div>
+        <div class="kanban-footer">
+            <button class="btn btn-outline-dark btn-ready" type="button" >+ Add card</button>
+        </div>
+        <div class="kanban-from backlog" data-target="kanban-backlog">
+
+        </div>
+    </div>
+    <div class="kanban column">
+        <div class="kanban-header">
+            In Progress
+        </div>
+        <div class="kanban-body kanban-progress">
+
+        </div>
+        <div class="kanban-footer">
+            <button class="btn btn-outline-dark btn-progress" type="button" >+ Add card</button>
+
+        </div>
+        <div class="kanban-from ready" data-target="kanban-ready">
+
+        </div>
+
+    </div>
+    <div class="kanban column">
+        <div class="kanban-header">
+            Finished
+        </div>
+        <div class="kanban-body kanban-finished">
+
+        </div>
+        <div class="kanban-footer">
+            <button class="btn btn-outline-dark btn-finished" type="button" >+ Add card</button>
+
+        </div>
+        <div class="kanban-from inprogress" data-target="kanban-progress">
+
+        </div>
+
+    </div>
+</main>
+
+<div class="kanban-footer-task">
+    <div class="tasks">
+        <div class="kanban-active-task">Active tasks: <span class="backlog-lenght"></span></div>
+        <div class="kanban-finished-task">Finished tasks: <span class="finished-lenght"></span></div>
+    </div>
+    <div class="tasks-name">
+        <div class="kanban-name-task">Kanban board by <span class="name-footer"></span>, <span
+                class="year-footer"></span></div>
+    </div>
+</div>

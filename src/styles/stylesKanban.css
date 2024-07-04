@@ -1,0 +1,228 @@
+:root {
+  --color-navbar-footer: #0067a3;
+  --color-border: #0dcaf0;
+  --color-text: #ffffff;
+  --color-background: #0079BF;
+  --color-header: #1f2123;
+  --color-ul-task: #f1f1f1;
+}
+
+/* верхушка */
+.container-kanban {
+  width: 100%;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-heading,
+.kanban-footer-task {
+  background-color: var(--color-navbar-footer);
+  color: var(--color-text);
+  box-sizing: unset;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+}
+
+.kanban-heading-text,
+.user-menu,
+.name-user,
+.img-user {
+  color: var(--color-text);
+  padding: 0 12px;
+}
+
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.button-menu {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.menu,
+.list-menu {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  background-color: var(--color-ul-task);
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 50px;
+  right: 10px;
+  padding-left: 0;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.list-menu {
+  text-align: center;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-menu:hover {
+  color: var(--color-border);
+}
+
+.link {
+  text-decoration: none;
+  font-size: 20px;
+  color: var(--color-header);
+}
+
+.link:hover {
+  color: var(--color-border);
+}
+
+.list-menu-user:hover .menu-users {
+  display: block;
+}
+
+.user-management-form {
+  display: none;
+}
+
+.user-management-form h3 {
+  text-align: center;
+}
+
+#user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-user {
+  margin-top: 15px;
+}
+
+#user-list li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+/* доска */
+.kanban {
+  background-color: var(--color-background);
+  position: relative;
+  width: 100%;
+  min-height: 83vh;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  /* position: fixed; */
+  height: 100%;
+  align-items: flex-start;
+}
+
+.column {
+  padding: 12px;
+  width: 282px;
+  min-height: 120px;
+  background: var(--color-ul-task);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.kanban-body {
+  width: -webkit-fill-available;
+  min-height: 100px;
+}
+
+.btn-backlog,
+.btn-submit,
+.btn-ready,
+.btn-progress,
+.btn-finished {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  width: 246px;
+}
+
+.btn-ready,
+.btn-progress,
+.btn-finished {
+  bottom: 0px;
+  position: relative;
+}
+
+.input,
+.btn-submit {
+  display: none;
+}
+
+.input {
+  border: 0;
+  border-radius: 10px;
+  padding: 5px;
+  width: 246px;
+}
+
+.kanban-element {
+  width: 235px;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 6px;
+  word-wrap: break-word;
+  margin: 9px 0;
+}
+
+.backlog,
+.inprogress,
+.ready {
+  display: none;
+}
+
+/* низ */
+.tasks,
+.tasks-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.backlog-lenght,
+.finished-lenght {
+  padding: 0 110px 0 0;
+}
+
+.kanban-element.selected {
+  background-color: #ff0000; /* Цвет фона выделенной задачи */
+}
+
+.admin_navbar {
+  background-color: var(--color-navbar-footer) !important;
+}
+
+.user_navbar {
+  background-color: var(--color-navbar-footer) !important;
+}
