@@ -56,6 +56,23 @@ export const addFirstTask = function (document) {
   });
 };
 
+// Обработчик нажатия клавиши DELETE для удаления выделенных задач
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Delete") {
+    const selectedTasks = document.querySelectorAll(".kanban-element.selected");
+    let tasks = getFromStorage("tasks") || [];
+    selectedTasks.forEach(taskElement => {
+      const taskId = taskElement.id.replace("task_", "");
+      // Удаляем задачу из DOM
+      taskElement.remove();
+      // Удаляем задачу из локального хранилища
+      tasks = tasks.filter(task => task.id !== taskId);
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    countTasks();
+  }
+});
+
 // Логика показа задач пользователя
 export const showUserTasks = function () {
   const allTasks = getFromStorage("tasks") || [];
@@ -118,23 +135,6 @@ export const showUserTasks = function () {
   countTasks(); // Вызов функции подсчета задач
 };
 
-// Обработчик нажатия клавиши DELETE для удаления выделенных задач
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Delete") {
-    const selectedTasks = document.querySelectorAll(".kanban-element.selected");
-    let tasks = getFromStorage("tasks") || [];
-    selectedTasks.forEach(taskElement => {
-      const taskId = taskElement.id.replace("task_", "");
-      // Удаляем задачу из DOM
-      taskElement.remove();
-      // Удаляем задачу из локального хранилища
-      tasks = tasks.filter(task => task.id !== taskId);
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    countTasks();
-  }
-});
-
 export const showAdminTasks = function () {
   // Получаем все задачи из хранилища
   const allTasks = getFromStorage("tasks");
@@ -191,6 +191,7 @@ export const showAdminTasks = function () {
 
   // Включаем функциональность Drag and Drop для всех задач в колонке
   addDragAndDrop();
+  countTasks(); // Вызов функции подсчета задач
 };
 
 //добавление задач в выпадающий список
@@ -291,11 +292,6 @@ export const dropListBody = function (fromClass, bodyClass, newState) {
   }
 };
 
-/**
- * Counts the total number of tasks in different columns and updates the task count display.
- *
- * @return {void} Updates the task count display on the webpage.
- */
 export const countTasks = function () {
   const backlogColumn = document.querySelector(".kanban-backlog");
   const readyColumn = document.querySelector(".kanban-ready");

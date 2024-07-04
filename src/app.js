@@ -13,7 +13,7 @@ import { State } from "./state";
 import { authUser } from "./services/auth";
 import { userLoginMenu, userLogoutMenu } from "./services/userMenu";
 import { addUser } from "./services/addUser";
-import { showUserTasks, showAdminTasks, addFirstTask, Show, showReady, showFinished, showProgress } from "./services/task";
+import { showUserTasks, showAdminTasks, addFirstTask, Show } from "./services/task";
 
 export const appState = new State();
 
@@ -43,7 +43,7 @@ function showUserAuthenticatedContent() {
   showUserTasks();
 
   addFirstTask(document);
-  Show(document);
+  Show();
 }
 
 // Функция для отображения контента авторизованного админа
