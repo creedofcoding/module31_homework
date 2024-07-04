@@ -249,7 +249,7 @@ export const downList = function (addBtn, listClass) {
   }
 };
 
-//выбор задачи из выпадающего списка
+//выбор задачи из выпадающего списка и удаление из выпадающего списка и из backlog
 export const dropListBody = function (fromClass, bodyClass, newState) {
   const dropDownListTask = document.querySelectorAll(".kanban-from");
   const body = document.querySelector(bodyClass);
@@ -265,7 +265,7 @@ export const dropListBody = function (fromClass, bodyClass, newState) {
           clonedTask.id = task.id.slice(5);
 
           // Удаляем задачу из state и обновляем локальное хранилище
-          const taskId = task.id.replace("task_", "");
+          const taskId = task.id.replace("task_task_", "");
 
           const tasks = getFromStorage("tasks");
           const updatedTasks = tasks.map((t) => {
@@ -273,15 +273,19 @@ export const dropListBody = function (fromClass, bodyClass, newState) {
               t.state = newState; // Изменяем состояние задачи в зависимости от нового состояния
               Task.save(t);
             }
+            console.log(`${t.id} - ${taskId}`);
             return t;
           });
+
           localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 
           body.append(clonedTask);
+          
           // Удаление из выпадающего списка
           task.remove();
+          
           // Удаление из Backlog
-          const removeTask = document.getElementById(taskId);
+          const removeTask = document.getElementById(`task_${taskId}`);
           if (removeTask) {
             removeTask.remove();
           }
